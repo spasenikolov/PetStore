@@ -51,7 +51,7 @@ public class HistoryLogServiceTest {
         when(this.historyLogRepository.findAll()).thenReturn(historyLogList);
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(String.format("%-15s%-15s%-15s\n","Date", "Successful","Not allowed"));
-        stringBuilder.append(String.format("%-15s%-15d%-15d\n",
+        stringBuilder.append(String.format("%-15s%-15d%-15d",
                 historyLog.getDateOfExecution().toString(),
                 historyLog.getNumOfSuccessfulPetBuyers(),
                 historyLog.getNumOfUsersNotAllowedToBuyPet()));
