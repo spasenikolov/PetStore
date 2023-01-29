@@ -1,10 +1,8 @@
 package scopisto.apprenticeship.petstore.web;
 
 import org.junit.Before;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,7 +20,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -67,7 +64,7 @@ public class InitControllerTest {
     public void createPets_success() throws Exception {
         when(petService.createPets()).thenReturn(List.of(dog));
 
-        this.mockMvc.perform(post("/initdatabase/pets")).andExpect(status().isOk()).andReturn();
+        this.mockMvc.perform(post("/create/pets")).andExpect(status().isOk()).andReturn();
 
         verify(this.petService,times(1)).createPets();
     }
@@ -76,7 +73,7 @@ public class InitControllerTest {
     public void createUsers_success() throws Exception {
         when(userService.createUsers()).thenReturn(List.of(user));
 
-        this.mockMvc.perform(post("/initdatabase/users")).andExpect(status().isOk()).andReturn();
+        this.mockMvc.perform(post("/create/users")).andExpect(status().isOk()).andReturn();
 
         verify(this.userService,times(1)).createUsers();
     }

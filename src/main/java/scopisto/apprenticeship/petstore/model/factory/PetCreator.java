@@ -30,6 +30,7 @@ public class PetCreator {
         pet.setRating(rating);
         pet.setDateOfBirth(date);
         pet.setPrice(pet.getPrice());
+        pet.setType(type.toUpperCase(Locale.ROOT));
         return pet;
     }
 }

@@ -42,7 +42,6 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:6.0.4" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:6.0.4" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-beans:6.0.4" level="project" />
-    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:2.0.6" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-data-jpa:3.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-aop:3.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.aspectj:aspectjweaver:1.9.19" level="project" />
@@ -76,6 +75,8 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.14.1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-jdbc:3.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:3.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:3.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:3.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-logging:3.0.2" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.4.5" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-core:1.4.5" level="project" />
@@ -114,9 +115,6 @@
     <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-websocket:10.1.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-web:6.0.4" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:6.0.4" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: org.springframework.boot:spring-boot-devtools:3.0.2" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:3.0.2" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:3.0.2" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.postgresql:postgresql:42.5.1" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.checkerframework:checker-qual:3.5.0" level="project" />
     <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.18.24" level="project" />
@@ -152,5 +150,14 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.security:spring-security-test:6.0.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.13.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:2.2" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-graphql:3.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.graphql:spring-graphql:1.1.1" level="project" />
+    <orderEntry type="library" name="Maven: io.projectreactor:reactor-core:3.5.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: io.micrometer:context-propagation:1.0.0" level="project" />
+    <orderEntry type="library" name="Maven: com.graphql-java:graphql-java:20.0" level="project" />
+    <orderEntry type="library" name="Maven: com.graphql-java:java-dataloader:3.2.0" level="project" />
+    <orderEntry type="library" name="Maven: org.reactivestreams:reactive-streams:1.0.4" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:2.0.6" level="project" />
+    <orderEntry type="library" name="Maven: com.graphql-java:graphql-java-extended-scalars:20.0" level="project" />
   </component>
 </module>

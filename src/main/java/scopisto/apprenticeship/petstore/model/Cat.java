@@ -7,10 +7,7 @@ import scopisto.apprenticeship.petstore.model.currency.Money;
 @Entity
 @DiscriminatorValue("CAT")
 public class Cat extends Pet{
-    @Override
-    public String getType() {
-        return "CAT";
-    }
+
     @Override
     public String printBuyMessage() {
         return String.format("Meow, cat %s has owner %s",this.getName(), this.getOwner().getFirstName());

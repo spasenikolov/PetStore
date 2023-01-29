@@ -45,7 +45,7 @@ public class PetServiceTest {
                 .setDateOfBirth(LocalDate.of(2022,4,1))
                 .setDescription("Test Description")
                 .setRating(2)
-                .build("Cat");
+                .build("CAT");
         cat.setId(1L);
 
         this.petService = new PetServiceImpl(this.petRepository, this.petBuilder);
@@ -121,8 +121,6 @@ public class PetServiceTest {
 
     @Test
     public void createPets_success() {
-        when(this.petRepository.save(any(Pet.class))).thenReturn(cat);
-
         var result = this.petService.createPets();
 
         verify(this.petRepository, times(result.size())).save(any(Pet.class));

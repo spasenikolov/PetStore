@@ -18,17 +18,13 @@ public abstract class Pet {
     private long id;
     @ManyToOne
     private User owner;
-
     private String name;
-
     private String description;
     private LocalDate dateOfBirth;
-
     private Money price;
-
     private Integer rating;
+    private String type;
 
-    public abstract String getType();
     public abstract String printBuyMessage();
     public abstract Money getPrice();
 

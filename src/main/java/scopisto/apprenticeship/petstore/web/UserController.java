@@ -29,7 +29,6 @@ public class UserController {
                 HttpStatus.OK);
     }
 
-    //TODO write an assumption
     @PostMapping("/buy")
     public ResponseEntity<List<UserDTO>> buyPets() {
         return new ResponseEntity<>(userMapper.fromEntityToDTO(userService.buyPetForEachUser()),

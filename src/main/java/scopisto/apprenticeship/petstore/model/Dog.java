@@ -10,10 +10,6 @@ import java.math.BigDecimal;
 @DiscriminatorValue("DOG")
 public class Dog extends Pet {
 
-    @Override
-    public String getType() {
-        return "DOG";
-    }
 
     @Override
     public String printBuyMessage() {
