@@ -1,0 +1,34 @@
+type Query{
+    users: [User]
+    pets: [Pet]
+    historyLog: String
+
+}
+type Mutation{
+    createUsers: [User]
+    createPets: [Pet]
+    buy: [User]
+}
+
+type Pet {
+    id: ID!
+    owner: User
+    name: String
+    description: String
+    dateOfBirth: String
+    price: Money
+    rating: Int
+    type: String
+}
+type User {
+    id: ID!
+    firstName: String
+    lastName: String
+    emailAddress: String
+    budget: Money
+    pets: [Pet]
+}
+type Money {
+    amount: Float
+    currency: String
+}
