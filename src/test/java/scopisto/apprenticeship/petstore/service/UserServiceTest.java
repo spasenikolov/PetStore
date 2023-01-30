@@ -4,7 +4,6 @@ package scopisto.apprenticeship.petstore.service;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import scopisto.apprenticeship.petstore.model.Pet;
