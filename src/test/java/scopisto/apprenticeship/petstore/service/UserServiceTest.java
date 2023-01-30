@@ -162,7 +162,6 @@ public class UserServiceTest {
 
     @Test
     public void createUsers_success() {
-    when(this.userRepository.save(any(User.class))).thenReturn(user);
 
     var result = this.userService.createUsers();
 

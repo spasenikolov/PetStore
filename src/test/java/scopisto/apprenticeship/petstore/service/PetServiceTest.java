@@ -34,19 +34,19 @@ public class PetServiceTest {
     @Before
     public void setUp(){
         petBuilder = new PetBuilder();
-        dog = petBuilder.setName("Test")
-                .setDateOfBirth(LocalDate.of(2022,2,1))
-                .setDescription("Test Description")
-                .setRating(2)
+        dog = petBuilder.name("Test")
+                .dateOfBirth(LocalDate.of(2022,2,1))
+                .description("Test Description")
+                .rating(2)
+                .id(0L)
                 .build("DOG");
-        dog.setId(0L);
 
-        cat = petBuilder.setName("Test")
-                .setDateOfBirth(LocalDate.of(2022,4,1))
-                .setDescription("Test Description")
-                .setRating(2)
+        cat = petBuilder.name("Test")
+                .dateOfBirth(LocalDate.of(2022,4,1))
+                .description("Test Description")
+                .rating(2)
+                .id(1L)
                 .build("CAT");
-        cat.setId(1L);
 
         this.petService = new PetServiceImpl(this.petRepository, this.petBuilder);
     }
