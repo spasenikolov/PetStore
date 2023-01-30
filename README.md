@@ -15,7 +15,7 @@ Pet Store Spring Boot Application that can store/manage pets.
 - buy localhost:9090/users/buy POST
 - list-users localhost:/9090/users GET
 - list-pets localhost:/9090/pets GET
-- history-log localhost:/9090/history-log
+- history-log localhost:/9090/history-log GET
 ### With GraphQL:
 Go to localhost:9090/graphiql
 - create-users mutation createUsers: [User]
