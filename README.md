@@ -23,5 +23,5 @@ Go to localhost:9090/graphiql
 - buy mutation buy: [User]
 - list-users query listUsers: [User]
 - list-pets query listPets: [Pet]
-- history-log query historyLog
+- history-log query historyLog String
     
