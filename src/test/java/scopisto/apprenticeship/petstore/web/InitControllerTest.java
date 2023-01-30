@@ -44,10 +44,10 @@ public class InitControllerTest {
     @Before
     public void setUp() {
         petBuilder = new PetBuilder();
-        dog = petBuilder.setName("Test")
-                .setDateOfBirth(LocalDate.of(2022,1,1))
-                .setRating(3)
-                .setDescription("Test Description")
+        dog = petBuilder.name("Test")
+                .dateOfBirth(LocalDate.of(2022,1,1))
+                .rating(3)
+                .description("Test Description")
                 .build("DOG");
         user = User.builder()
                 .id(0L)

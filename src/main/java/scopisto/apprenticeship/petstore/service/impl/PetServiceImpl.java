@@ -5,11 +5,9 @@ import org.springframework.stereotype.Service;
 import scopisto.apprenticeship.petstore.dataholder.Names;
 import scopisto.apprenticeship.petstore.model.Pet;
 import scopisto.apprenticeship.petstore.model.currency.Money;
-import scopisto.apprenticeship.petstore.model.factory.PetCreator;
 import scopisto.apprenticeship.petstore.model.factory.builder.PetBuilder;
 import scopisto.apprenticeship.petstore.repository.jpa.PetRepository;
 import scopisto.apprenticeship.petstore.service.PetService;
-import scopisto.apprenticeship.petstore.utils.Generator;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -35,10 +33,10 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public Pet save(String name, String type, String description, LocalDate dateOfBirth, Integer rating) {
-        Pet pet = petBuilder.setName(name)
-                .setDescription(description)
-                .setDateOfBirth(dateOfBirth)
-                .setRating(rating)
+        Pet pet = petBuilder.name(name)
+                .description(description)
+                .dateOfBirth(dateOfBirth)
+                .rating(rating)
                 .build(type);
         return this.petRepository.save(pet);
     }
@@ -65,10 +63,10 @@ public class PetServiceImpl implements PetService {
             Integer rating = random.nextInt(11);
             String type = types.get(random.nextInt(2));
 
-            Pet pet = petBuilder.setName(name)
-                    .setDescription(description)
-                    .setDateOfBirth(dateOfBirth)
-                    .setRating(rating)
+            Pet pet = petBuilder.name(name)
+                    .description(description)
+                    .dateOfBirth(dateOfBirth)
+                    .rating(rating)
                     .build(type);
 
             this.petRepository.save(pet);

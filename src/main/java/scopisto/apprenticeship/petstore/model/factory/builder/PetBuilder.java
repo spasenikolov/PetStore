@@ -12,27 +12,33 @@ public class PetBuilder {
     private String description;
     private LocalDate dateOfBirth;
     private Integer rating;
+    private Long id;
 
-    public PetBuilder setName(String name){
+    public PetBuilder name(String name){
         this.name = name;
         return this;
     }
-    public PetBuilder setDescription(String description){
+    public PetBuilder description(String description){
         this.description = description;
         return this;
     }
-    public PetBuilder setDateOfBirth(LocalDate dateOfBirth){
+    public PetBuilder dateOfBirth(LocalDate dateOfBirth){
         this.dateOfBirth = dateOfBirth;
         return this;
     }
-    public PetBuilder setRating(Integer rating){
+    public PetBuilder rating(Integer rating){
         this.rating = rating;
+        return this;
+    }
+    public PetBuilder id(Long id){
+        this.id = id;
         return this;
     }
     public Pet build(String type){
         PetCreator petCreator = new PetCreator();
         return petCreator.createPet(name,type,description,dateOfBirth,rating);
     }
+
 
 
 

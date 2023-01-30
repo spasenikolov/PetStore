@@ -1,6 +1,6 @@
 type Query{
-    users: [User]
-    pets: [Pet]
+    listUsers: [User]
+    listPets: [Pet]
     historyLog: String
 
 }

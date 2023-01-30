@@ -23,14 +23,6 @@ import java.util.Objects;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class User {
 
-    public User(String firstName, String lastName, String emailAddress, Money budget) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.emailAddress = emailAddress;
-        this.budget = budget;
-        this.pets = new ArrayList<>();
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -40,7 +32,6 @@ public class User {
     private Money budget;
 
     @OneToMany(mappedBy = "owner")
-//    @JsonIgnore
-//    @ToString.Exclude
+
     private List<Pet> pets;
 }

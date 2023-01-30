@@ -1,6 +1,5 @@
 package scopisto.apprenticeship.petstore.web;
 
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -8,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import scopisto.apprenticeship.petstore.mapper.UserMapper;
@@ -17,17 +14,13 @@ import scopisto.apprenticeship.petstore.model.Pet;
 import scopisto.apprenticeship.petstore.model.User;
 import scopisto.apprenticeship.petstore.model.currency.Money;
 import scopisto.apprenticeship.petstore.model.factory.builder.PetBuilder;
-import scopisto.apprenticeship.petstore.service.PetService;
 import scopisto.apprenticeship.petstore.service.UserService;
-import scopisto.apprenticeship.petstore.web.dto.PetDTO;
 import scopisto.apprenticeship.petstore.web.dto.UserDTO;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -72,7 +65,7 @@ class UserControllerTest {
                 .pets(new ArrayList<>())
                 .build();
 
-        pet = petBuilder.setName("Test").setDateOfBirth(LocalDate.now()).setRating(1).build("cat");
+        pet = petBuilder.name("Test").dateOfBirth(LocalDate.now()).rating(1).build("cat");
     }
 
     @Test
