@@ -1,16 +1,19 @@
 package scopisto.apprenticeship.petstore.model;
+
 import jakarta.persistence.*;
 import lombok.*;
 import scopisto.apprenticeship.petstore.model.currency.Money;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Period;
+
 @Getter
 @Setter
 @Entity
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="pet_type",
+@DiscriminatorColumn(name = "pet_type",
         discriminatorType = DiscriminatorType.STRING)
 public abstract class Pet {
     @Id
@@ -26,13 +29,15 @@ public abstract class Pet {
     private String type;
 
     public abstract String printBuyMessage();
+
     public abstract Money getPrice();
 
-    protected int getAge(){
+    protected int getAge() {
         Period period = dateOfBirth.until(LocalDate.now());
         return period.getYears();
     }
-    protected Money getAgePrice(){
+
+    protected Money getAgePrice() {
         BigDecimal age = BigDecimal.valueOf(this.getAge());
         return new Money(BigDecimal.ONE.multiply(age));
     }

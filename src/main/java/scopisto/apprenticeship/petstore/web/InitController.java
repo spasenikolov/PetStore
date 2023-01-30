@@ -23,11 +23,12 @@ public class InitController {
     private final UserService userService;
 
     @PostMapping("/pets")
-    public ResponseEntity<List<Pet>> createPets(){
+    public ResponseEntity<List<Pet>> createPets() {
         return new ResponseEntity<>(petService.createPets(), HttpStatus.OK);
     }
+
     @PostMapping("/users")
-    public ResponseEntity<List<User>> createUsers(){
+    public ResponseEntity<List<User>> createUsers() {
         return new ResponseEntity<>(userService.createUsers(), HttpStatus.OK);
     }
 

@@ -4,6 +4,7 @@ import lombok.*;
 import scopisto.apprenticeship.petstore.model.currency.Money;
 
 import java.util.List;
+
 @Builder
 @Getter
 @Setter

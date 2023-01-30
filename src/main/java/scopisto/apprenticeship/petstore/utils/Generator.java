@@ -8,6 +8,7 @@ import java.util.Random;
 
 public class Generator {
     Random random;
+
     public Generator() {
         random = new Random();
     }

@@ -26,6 +26,7 @@ public class PetServiceImpl implements PetService {
     public List<Pet> findAll() {
         return this.petRepository.findAll();
     }
+
     @Override
     public Optional<Pet> findById(Long id) {
         return this.petRepository.findById(id);
@@ -40,6 +41,7 @@ public class PetServiceImpl implements PetService {
                 .build(type);
         return this.petRepository.save(pet);
     }
+
     @Override
     public Pet save(Pet pet) {
         return this.petRepository.save(pet);

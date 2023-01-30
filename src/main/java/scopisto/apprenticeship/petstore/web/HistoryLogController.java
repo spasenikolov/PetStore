@@ -16,7 +16,7 @@ public class HistoryLogController {
     private final HistoryLogService historyLogService;
 
     @GetMapping
-    public ResponseEntity<String> getLogs(){
+    public ResponseEntity<String> getLogs() {
         return new ResponseEntity<>(historyLogService.getHistoryLog(), HttpStatus.OK);
     }
 

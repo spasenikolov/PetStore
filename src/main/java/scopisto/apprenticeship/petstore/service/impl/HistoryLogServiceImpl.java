@@ -35,7 +35,7 @@ public class HistoryLogServiceImpl implements HistoryLogService {
                                     historyLog.getNumOfUsersNotAllowedToBuyPet()));
                         }
                 );
-        logsBuilder.delete(logsBuilder.length()-1, logsBuilder.length());
+        logsBuilder.delete(logsBuilder.length() - 1, logsBuilder.length());
         return logsBuilder.toString();
     }
 }

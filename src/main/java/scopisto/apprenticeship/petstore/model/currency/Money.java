@@ -1,7 +1,10 @@
 package scopisto.apprenticeship.petstore.model.currency;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 /** I assume there needs to be a separate class for money
@@ -12,9 +15,11 @@ import java.math.BigDecimal;
  *
 */
 @Embeddable
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
 public class Money {
-    @Column(name = "budget")
+    @Column()
     private BigDecimal amount;
     @Enumerated(EnumType.STRING)
     Currency currency;
@@ -26,16 +31,5 @@ public class Money {
     public Money(Integer amount) {
         this.amount = new BigDecimal(amount);
         currency = Currency.USD;
-    }
-    public Money(BigDecimal amount, Currency currency) {
-        this.amount = amount;
-        this.currency = currency;
-    }
-    public Money() {
-    }
-    public Money subtract(Money money){
-        BigDecimal subtract = this.getAmount().subtract(money.getAmount());
-        this.setAmount(subtract);
-        return this;
     }
 }

@@ -32,17 +32,17 @@ public class PetServiceTest {
     Pet cat;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         petBuilder = new PetBuilder();
         dog = petBuilder.name("Test")
-                .dateOfBirth(LocalDate.of(2022,2,1))
+                .dateOfBirth(LocalDate.of(2022, 2, 1))
                 .description("Test Description")
                 .rating(2)
                 .id(0L)
                 .build("DOG");
 
         cat = petBuilder.name("Test")
-                .dateOfBirth(LocalDate.of(2022,4,1))
+                .dateOfBirth(LocalDate.of(2022, 4, 1))
                 .description("Test Description")
                 .rating(2)
                 .id(1L)
@@ -58,10 +58,11 @@ public class PetServiceTest {
 
         var result = this.petService.findAll();
 
-        assertEquals(2,result.size());
-        assertEquals(listOfPets,result);
-        verify(this.petRepository,times(1)).findAll();
+        assertEquals(2, result.size());
+        assertEquals(listOfPets, result);
+        verify(this.petRepository, times(1)).findAll();
     }
+
     @Test
     public void findAll_withoutPets_emptyResult() {
         List<Pet> listOfPets = List.of();
@@ -69,9 +70,9 @@ public class PetServiceTest {
 
         var result = this.petService.findAll();
 
-        assertEquals(0,result.size());
-        assertEquals(listOfPets,result);
-        verify(this.petRepository,times(1)).findAll();
+        assertEquals(0, result.size());
+        assertEquals(listOfPets, result);
+        verify(this.petRepository, times(1)).findAll();
     }
 
     @Test
@@ -80,7 +81,7 @@ public class PetServiceTest {
 
         var result = this.petService.findById(6L).get();
 
-        verify(this.petRepository,times(1)).findById(anyLong());
+        verify(this.petRepository, times(1)).findById(anyLong());
         assertEquals(dog, result);
     }
 
@@ -100,13 +101,13 @@ public class PetServiceTest {
         var result = this.petService.save(dog.getName(), dog.getType(), dog.getDescription(), dog.getDateOfBirth(), dog.getRating());
 
         assertEquals(dog, result);
-        verify(this.petRepository,times(1)).save(any(Pet.class));
+        verify(this.petRepository, times(1)).save(any(Pet.class));
     }
 
     @Test
     public void save_withArgumentsAndIncorrectType_IllegalArgumentException() {
         assertThrows(IllegalArgumentException.class,
-                ()-> this.petService.save(dog.getName(), "Rabbit", dog.getDescription(), dog.getDateOfBirth(), dog.getRating()));
+                () -> this.petService.save(dog.getName(), "Rabbit", dog.getDescription(), dog.getDateOfBirth(), dog.getRating()));
     }
 
     @Test
@@ -115,8 +116,8 @@ public class PetServiceTest {
 
         var result = this.petService.save(dog);
 
-        assertEquals(dog,result);
-        verify(this.petRepository,times(1)).save(any(Pet.class));
+        assertEquals(dog, result);
+        verify(this.petRepository, times(1)).save(any(Pet.class));
     }
 
     @Test
@@ -133,6 +134,6 @@ public class PetServiceTest {
 
         var result = this.petService.generateRandomId();
 
-        assertEquals(Optional.of(0L),Optional.ofNullable(result));
+        assertEquals(Optional.of(0L), Optional.ofNullable(result));
     }
 }

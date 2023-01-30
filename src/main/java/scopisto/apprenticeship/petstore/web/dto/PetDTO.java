@@ -5,8 +5,11 @@ import scopisto.apprenticeship.petstore.model.User;
 import scopisto.apprenticeship.petstore.model.currency.Money;
 
 import java.time.LocalDate;
-/** I assume there is no need to return the owner's id,
- * only whether the pet has or does not have an owner.*/
+
+/**
+ * I assume there is no need to return the owner's id,
+ * only whether the pet has or does not have an owner.
+ */
 @Builder
 @Getter
 @Setter

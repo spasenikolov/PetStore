@@ -14,6 +14,7 @@ import scopisto.apprenticeship.petstore.model.exceptions.InvalidPetIdException;
 import scopisto.apprenticeship.petstore.model.exceptions.PetAlreadyHasAnOwnerException;
 import scopisto.apprenticeship.petstore.model.factory.PetCreator;
 import scopisto.apprenticeship.petstore.repository.jpa.UserRepository;
+import scopisto.apprenticeship.petstore.service.impl.MoneyServiceImpl;
 import scopisto.apprenticeship.petstore.service.impl.UserServiceImpl;
 import scopisto.apprenticeship.petstore.utils.Generator;
 
@@ -39,8 +40,8 @@ public class UserServiceTest {
     HistoryLogService historyLogService;
     @Mock
     Generator generator;
+    MoneyService moneyService;
 
-    @InjectMocks
     UserServiceImpl userService;
 
     PetCreator petCreator;
@@ -50,6 +51,7 @@ public class UserServiceTest {
 
     @Before
     public void setUp() {
+        moneyService = new MoneyServiceImpl();
         petCreator = new PetCreator();
         dog = petCreator.createPet("DOG");
         dog.setId(0L);
@@ -71,6 +73,7 @@ public class UserServiceTest {
                 .budget(new Money(BigDecimal.TEN))
                 .pets(new ArrayList<>())
                 .build();
+        this.userService = new UserServiceImpl(this.userRepository, this.petService, this.historyLogService, this.moneyService);
     }
 
     @Test
@@ -80,10 +83,11 @@ public class UserServiceTest {
 
         List<User> listFromService = this.userService.findAll();
 
-        assertEquals(expectedList,listFromService);
-        verify(this.userRepository,times(1)).findAll();
+        assertEquals(expectedList, listFromService);
+        verify(this.userRepository, times(1)).findAll();
 
     }
+
     @Test
     public void findAllTest_noUsers_emptyResult() {
         List<User> expectedList = List.of();
@@ -91,9 +95,9 @@ public class UserServiceTest {
 
         List<User> listFromService = this.userService.findAll();
 
-        assertEquals(expectedList,listFromService);
+        assertEquals(expectedList, listFromService);
         assertEquals(0, listFromService.size());
-        verify(this.userRepository,times(1)).findAll();
+        verify(this.userRepository, times(1)).findAll();
 
     }
 
@@ -120,9 +124,9 @@ public class UserServiceTest {
         var result = this.userService.buyPetForEachUser();
 
         verify(this.petService, times(1)).findById(anyLong());
-        assertEquals(expectedList,result);
-        assertEquals(1,result.size());
-        assertEquals(1,result.get(0).getPets().size());
+        assertEquals(expectedList, result);
+        assertEquals(1, result.size());
+        assertEquals(1, result.get(0).getPets().size());
     }
 
     @Test
@@ -157,15 +161,15 @@ public class UserServiceTest {
 
         this.userService.save(user.getFirstName(), user.getLastName(), user.getEmailAddress(), user.getBudget());
 
-        verify(this.userRepository,times(1)).save(any(User.class));
+        verify(this.userRepository, times(1)).save(any(User.class));
     }
 
     @Test
     public void createUsers_success() {
 
-    var result = this.userService.createUsers();
+        var result = this.userService.createUsers();
 
-    verify(this.userRepository,times(result.size())).save(any(User.class));
+        verify(this.userRepository, times(result.size())).save(any(User.class));
     }
 
     @Test
@@ -173,24 +177,27 @@ public class UserServiceTest {
         when(this.petService.findById(anyLong())).thenReturn(Optional.ofNullable(dog));
         when(this.petService.save(any(Pet.class))).thenReturn(dog);
 
-        var result = this.userService.buyPet(dog.getId(),user);
+        var moneyBefore = user.getBudget();
+        var result = this.userService.buyPet(dog.getId(), user);
 
+        assertEquals(moneyService.subtract(moneyBefore, dog.getPrice()).getAmount(), user.getBudget().getAmount());
         verify(this.petService, times(1)).save(any(Pet.class));
     }
 
     @Test
     public void buyPet_hasOwner_PetAlreadyHasAnOwnerException() {
         dog.setOwner(new User());
+
         when(this.petService.findById(anyLong())).thenReturn(Optional.ofNullable(dog));
 
         assertThrows(PetAlreadyHasAnOwnerException.class,
-                ()->this.userService.buyPet(dog.getId(),user));
+                () -> this.userService.buyPet(dog.getId(), user));
     }
 
     @Test
     public void buyPet_IdDoesNotExists_InvalidPetIdException() {
         assertThrows(InvalidPetIdException.class,
-                ()->this.userService.buyPet(dog.getId(),user));
+                () -> this.userService.buyPet(dog.getId(), user));
     }
 
 }

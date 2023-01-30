@@ -13,7 +13,7 @@ public class Dog extends Pet {
 
     @Override
     public String printBuyMessage() {
-        return String.format("Woof, dog %s has owner %s",this.getName(), this.getOwner().getFirstName());
+        return String.format("Woof, dog %s has owner %s", this.getName(), this.getOwner().getFirstName());
     }
 
     @Override

@@ -14,7 +14,9 @@ import scopisto.apprenticeship.petstore.model.Pet;
 import scopisto.apprenticeship.petstore.model.User;
 import scopisto.apprenticeship.petstore.model.currency.Money;
 import scopisto.apprenticeship.petstore.model.factory.builder.PetBuilder;
+import scopisto.apprenticeship.petstore.service.MoneyService;
 import scopisto.apprenticeship.petstore.service.UserService;
+import scopisto.apprenticeship.petstore.service.impl.MoneyServiceImpl;
 import scopisto.apprenticeship.petstore.web.dto.UserDTO;
 
 import java.time.LocalDate;
@@ -35,6 +37,7 @@ class UserControllerTest {
     UserService userService;
     @MockBean
     UserMapper userMapper;
+
 
     @Autowired
     MockMvc mockMvc;

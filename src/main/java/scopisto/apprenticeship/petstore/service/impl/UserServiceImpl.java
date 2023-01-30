@@ -11,6 +11,7 @@ import scopisto.apprenticeship.petstore.model.exceptions.InvalidPetIdException;
 import scopisto.apprenticeship.petstore.model.exceptions.PetAlreadyHasAnOwnerException;
 import scopisto.apprenticeship.petstore.repository.jpa.UserRepository;
 import scopisto.apprenticeship.petstore.service.HistoryLogService;
+import scopisto.apprenticeship.petstore.service.MoneyService;
 import scopisto.apprenticeship.petstore.service.PetService;
 import scopisto.apprenticeship.petstore.service.UserService;
 import scopisto.apprenticeship.petstore.utils.Generator;
@@ -20,10 +21,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.stream.IntStream;
+
 /**
  * The create-users and create-pets methods can be implemented as a init component that runs on start,
  * but i assume the idea is that the methods can be used multiple times thus i implemented them as service layer methods.
- *
+ * <p>
  * For the buy requriments, I assume that every user needs to try to buy a random pet.
  * Other option: try to buy pet the first pet that you have money for (iterate the pets in the database).
  */
@@ -33,6 +35,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PetService petService;
     private final HistoryLogService historyLogService;
+    private final MoneyService moneyService;
 
     @Override
     public List<User> findAll() {
@@ -51,20 +54,21 @@ public class UserServiceImpl implements UserService {
      * Since it makes no sense to me to limit the table to 10 or 20 users
      * I assume it's the latter.
      * So, I generate a random number of objects with a limit of 10 or 20
-     * depending on whether it's a user or a pet.*/
+     * depending on whether it's a user or a pet.
+     */
     @Override
     public List<User> buyPetForEachUser() {
         List<User> allUsers = this.userRepository.findAll();
         List<User> successUsers = new ArrayList<>();
         allUsers.forEach(user -> {
-                    try {
-                        Pet pet = this.buyPet(this.petService.generateRandomId(), user);
-                        successUsers.add(user);
-                        System.out.println(pet.printBuyMessage());
-                    } catch (PetAlreadyHasAnOwnerException | InsufficientAmountException e) {
-                        System.out.println(e.getMessage());
-                    }
-                });
+            try {
+                Pet pet = this.buyPet(this.petService.generateRandomId(), user);
+                successUsers.add(user);
+                System.out.println(pet.printBuyMessage());
+            } catch (PetAlreadyHasAnOwnerException | InsufficientAmountException e) {
+                System.out.println(e.getMessage());
+            }
+        });
         this.historyLogService.insertLog(successUsers.size(), allUsers.size() - successUsers.size());
         return successUsers;
     }
@@ -117,7 +121,7 @@ public class UserServiceImpl implements UserService {
         if (owner.getBudget().getAmount().compareTo(pet.getPrice().getAmount()) < 0) {
             throw new InsufficientAmountException(owner.getId());
         }
-        owner.setBudget(owner.getBudget().subtract(pet.getPrice()));
+        owner.setBudget(moneyService.subtract(owner.getBudget(), pet.getPrice()));
         pet.setOwner(owner);
         owner.getPets().add(pet);
         return this.petService.save(pet);
