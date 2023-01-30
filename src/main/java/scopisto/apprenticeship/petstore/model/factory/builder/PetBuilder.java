@@ -4,7 +4,8 @@ package scopisto.apprenticeship.petstore.model.factory.builder;
 import org.springframework.stereotype.Component;
 import scopisto.apprenticeship.petstore.model.Pet;
 import scopisto.apprenticeship.petstore.model.factory.PetCreator;
-
+/** Because of the random generation of pets
+ * I assume that I need a Builder with a type argument*/
 import java.time.LocalDate;
 @Component
 public class PetBuilder {

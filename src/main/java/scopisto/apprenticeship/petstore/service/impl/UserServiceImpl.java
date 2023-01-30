@@ -20,7 +20,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.stream.IntStream;
-
+/**
+ * The create-users and create-pets methods can be implemented as a init component that runs on start,
+ * but i assume the idea is that the methods can be used multiple times thus i implemented them as service layer methods.
+ *
+ * For the buy requriments, I assume that every user needs to try to buy a random pet.
+ * Other option: try to buy pet the first pet that you have money for (iterate the pets in the database).
+ */
 @Service
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -38,6 +44,14 @@ public class UserServiceImpl implements UserService {
         return this.userRepository.findById(id);
     }
 
+    /**
+     * I am not sure about the semantics of the max value
+     * in the requirements for create-users and create-pets
+     * (whether it's a constraint on the table or max created users in one run).
+     * Since it makes no sense to me to limit the table to 10 or 20 users
+     * I assume it's the latter.
+     * So, I generate a random number of objects with a limit of 10 or 20
+     * depending on whether it's a user or a pet.*/
     @Override
     public List<User> buyPetForEachUser() {
         List<User> allUsers = this.userRepository.findAll();

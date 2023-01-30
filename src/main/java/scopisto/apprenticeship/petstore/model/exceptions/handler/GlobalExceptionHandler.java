@@ -6,7 +6,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import scopisto.apprenticeship.petstore.model.exceptions.InvalidPetIdException;
 import scopisto.apprenticeship.petstore.model.exceptions.InvalidPetInputException;
-
+/**
+ * Because I want to continue to iterate and buy pets,
+ * InsufficientAmountException and PetAlreadyHasAnOwnerException
+ * are being catch in the service with a console message printed out.*/
 @ControllerAdvice
 public class GlobalExceptionHandler {
 

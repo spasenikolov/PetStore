@@ -4,7 +4,13 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
-
+/** I assume there needs to be a separate class for money
+ * that uses BigDecimal for precision and has a enum currency.
+ *
+ * Because the currency in the example is USD
+ * i assume it's the default currency
+ *
+*/
 @Embeddable
 @Data
 public class Money {
